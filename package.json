@@ -1,0 +1,22 @@
+{
+  "name": "abastix-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"bgBlue.bold,bgGreen.bold\" --kill-others-on-fail \"pnpm backend\" \"pnpm frontend\"",
+    "frontend": "pnpm --filter frontend dev",
+    "backend": "node scripts/run-backend.mjs",
+    "build": "pnpm --filter frontend build",
+    "lint": "pnpm --filter frontend lint",
+    "test:backend": "node scripts/run-backend.mjs test",
+    "test": "pnpm test:backend",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "docker:ps": "docker compose ps"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
